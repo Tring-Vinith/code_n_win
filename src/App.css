@@ -1,0 +1,7 @@
+.App{
+  background-color: #ddd;
+  height: min-content;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+}

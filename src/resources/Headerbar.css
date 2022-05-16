@@ -1,0 +1,69 @@
+#Headerbar{
+    padding: 20px;
+    /* display: flex;
+    flex-direction: row; */
+    height: 99px;
+    background-color: #fff;
+    align-items: center;
+    flex-basis: content;
+}
+#headerbar-left{
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+    width: auto;
+    float: left;
+    border-radius: 5px;
+    background-color: #eee;
+    justify-content: center;
+    align-items: center;
+    margin: 25.5px 0px 25.5px 24.5px;
+    
+}
+#headerbar-right{
+    float: right;
+    margin-right: 0px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 25.5px 24.5px 25.5px 0px;
+}
+#addProject{
+    background-color: #5BBC2E;
+    border: none;
+    height: 48px;
+    width: 134px;    
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px; */
+    color: #fff;
+    font-weight: bold;
+}
+#add{
+    /* margin: 6px 4px; */
+    margin-left: 12px;
+    margin-right: 8px;
+}
+#addProject{
+    padding: 0;
+    justify-content: unset;
+}
+#search{
+    border: none;
+    background-color: #eee;
+    border-radius: 5px;
+    padding-right: 160px;
+    height: auto;
+    height: -webkit-fill-available;
+}
+#notification{
+    margin: 0px 0px;
+}
+.br{
+    background-color: #E2E3E5;
+    height: 32px;
+    width: 1px;
+    color: #F2F3F5;
+    margin: 8px 21px;
+}

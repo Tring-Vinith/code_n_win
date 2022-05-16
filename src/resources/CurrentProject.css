@@ -1,0 +1,36 @@
+.currentProjects{
+    /* margin-left: 20vw; */
+}
+.projectsContainer{
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+.projects{
+    background-color: #fff;
+    margin:12px;
+    border-top: #fd7;
+    border-radius: 10px;
+    width:554px;
+    Height:455px;
+}
+.project_logo{
+    margin-left: 24px;
+    margin-top: 24px;
+    margin-right: 16px;
+    height: 54px;
+    width: 54px;
+    border-radius: 27px;
+}
+.project_header{
+    display:inline-flex;
+    align-items: center;
+}
+.project_duration{
+    font-weight: lighter;
+    text-size-adjust: 14px;
+}
+.project_footer{
+    display: flex;
+    flex-direction: row;
+}
