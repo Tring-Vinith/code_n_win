@@ -6,6 +6,7 @@
     background-color: #fff;
     align-items: center;
     flex-basis: content;
+    width: 1180px;
 }
 #headerbar-left{
     display: flex;
@@ -48,7 +49,8 @@
     border: none;
     background-color: #eee;
     border-radius: 5px;
-    padding-right: 160px;
+    padding-left: 10px;
+    padding-right: 150px;
     height: auto;
     height: -webkit-fill-available;
 }

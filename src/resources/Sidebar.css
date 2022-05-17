@@ -1,6 +1,6 @@
 .sidebar{
     background-color: "#04162C";
-    width: 20vw;
+    width: 260px;
     /* height: -webkit-fill-available; */
     overflow-x: scroll;
 }
@@ -14,10 +14,11 @@
     flex-direction: row;
     color: #969AA1;
     transition: all 0.4 s;
+    margin:9px 0px;
 
 }
 .sidebarIcons{
-    margin-left: 20px;
+    margin-left: 28px;
     transition: all 1s;
     padding: 25px 0px;
     /* transition: all 1s; */
@@ -26,7 +27,7 @@
 .sidebarFields{
     color: #969AA1;
     background-color:inherit ;
-    font-weight: bold;
+    font-weight:normal;
     margin-left: 16px;
     padding: 25px 0px;
 }

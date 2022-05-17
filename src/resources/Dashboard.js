@@ -1,44 +1,7 @@
 import React, { Component } from 'react'
 import './Dashboard.css'
 import icons,{images} from './imageResources/dashboard/export'
-import { Chart,Tooltip, Title, ArcElement, Legend} from 'chart.js'
-import { Doughnut} from 'react-chartjs-2'
-import DonutChart,{Props} from 'react-donut-chart'
-// import Dropdown from 'react-dropdown';
-// import 'react-dropdown/style.css';
- Chart.register(Tooltip, Title, ArcElement, Legend)
-// function DoughnutChart(){
-//   const data={
-//     labels: [
-//       'Red',
-//       'Blue',
-//       'Yellow'
-//     ],
-//     options: {
-//       plugins: {
-//           legend: {
-//               position:'bottom'
-//               }
-//           }
-//       }
-//     ,
-//     datasets: [{
-//       label: 'My First Dataset',
-//       data: [300, 50, 100],
-//       backgroundColor: [
-//         'rgb(255, 99, 132)',
-//         'rgb(54, 162, 235)',
-//         'rgb(255, 205, 86)'
-//       ],
-//       hoverOffset: 4
-//     }]
-//   }
-//   return(
-//     <div>
-//       <Doughnut data={data}></Doughnut>
-//     </div>
-//   )
-// }
+
 export default class Dashboard extends Component {
   constructor(props){
     super(props)
@@ -115,51 +78,50 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h2>
-        Dashboard
-        </h2>
+        <h2 style={{marginLeft:'24px'}}>Dashboard</h2>
         <div className='dashboard_body'>
           <div className='project_overview '>
             <div id='project_overview_header'>
-              <h3 style={{fontSize:"21px"}}>Projects overview</h3>
+              <h3 style={{fontSize:"18px",width:'180px'}}>Projects overview</h3>
               <div style={{margin:"0px 35px 0px 253px"}}>Download report</div>
               <img src={icons.document} style={{margin:"0px 12px 0px 0px"}} alt='document' ></img>
               <img src={icons.pdf} style={{margin:"0px 24px 0px 0px"}} alt='pdf' ></img>
             </div>
             <div className='project_br'></div>
             <div id='project_overview_body' style={{'height':'400px','width':'400px'}}>
-              {/* <Doughnut data={this.state.data} options={this.state.options} ></Doughnut> */}
-              <DonutChart
-              data={[
-                {
-                  label: 'Give you up',
-                  value: 25,
-                },
-                {
-                  label: 'Never give up',
-                  value: 15,
-                }, {
-                  label: 'Give you up',
-                  value: 15,
-                },
-                {
-                  label: 'Never give up',
-                  value: 15,
-                },
-              ]}
-              // clickToggle={true}
-              colors={['#ff0','#f0f','#0ff','#0f0']}
-              // width={400}
-              // height={400}
               
-              ></DonutChart>
+              <svg width="690" height="320">
+                <circle id='discovery_arc' cx="160" cy="340" r="120" stroke="#0C56EA" stroke-width="40" 
+                  stroke-dasharray="calc(100*((22/7)*2.4)) calc((22/7)*400)"   
+                  fill="transparent" 
+                  transform="rotate(90) translate(0 -500)"
+                />
+                <circle id='opportunity_arc' cx="160" cy="340" r="120" stroke="#A84EFB" stroke-width="40" 
+                  stroke-dasharray="calc(86*((22/7)*2.4)) calc((22/7)*400)"   fill="transparent" 
+                  transform="rotate(90) translate(0 -500)"
+                />
+                <circle id='ongoing_arc' cx="160" cy="340" r="120" stroke="#FF9F3C" stroke-width="40" 
+                  stroke-dasharray="calc(85*((22/7)*2.4)) calc((22/7)*400)" 
+                  fill="transparent" 
+                  transform="rotate(90) translate(0 -500)"
+                />
+                <circle id='parked_arc' cx="160" cy="340" r="120" stroke="#FFDD20" stroke-width="40" 
+                  stroke-dasharray="calc(71*((22/7)*2.4)) calc((22/7)*400)" 
+                  fill="transparent" 
+                  transform="rotate(90) translate(0 -500)"
+                />
+                <circle id='ready_arc' cx="160" cy="340" r="120" stroke="#00B8A0" stroke-width="40" 
+                  stroke-dasharray="calc(70*((22/7)*2.4)) calc((22/7)*400)" 
+                  fill="transparent" 
+                  transform="rotate(90) translate(0 -500)"
+                />
+                <text x="140" y="170">hello</text>
+              </svg>
             </div>
           </div>
           <div className='project_gallery'>
             <div id='project_gallery_header'>
-              <h3 style={{margin:'0px 0px 0px 24px'}}>Project Gallery</h3>
-                {/* <Dropdown options={this.state.dropdownOptions} onChange={this._onSelect} value={this.state.defaultOption} placeholder="Select an option" />; */}
-              
+              <h3 style={{margin:'0px 0px 0px 24px'}}>Project Gallery</h3>              
               <select name="dropdown" id="dropdown">
                 <option value='Pland-App'>Pland-App</option>
                 <option value='Reuters-Emerald'>Reuters-Emerald</option>

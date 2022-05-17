@@ -39,7 +39,7 @@ export default class Headerbar extends Component {
                   id='search_icon' 
                   style={{backgroundColor:"#eee",padding:"12px 12px",borderRadius:'5px'}} 
                   alt='icon'></img>
-              <input id='search' type={'text'} placeholder='Search your project here'></input>
+              <input id='search' type={'text'} placeholder='Search your project here' maxLength={20}></input>
           </div>
           <div id='headerbar-right' >
             <img id='userImage' src={imageSrc.profile_pic} alt='user_image'></img>

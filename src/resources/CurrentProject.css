@@ -1,8 +1,8 @@
 .currentProjects{
-    /* margin-left: 20vw; */
+    margin-left: 14px;
 }
 .projectsContainer{
-    width: 80vw;
+    width: 1180px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -13,6 +13,7 @@
     border-radius: 10px;
     width:554px;
     Height:455px;
+    overflow: hidden;
 }
 .project_logo{
     margin-left: 24px;
@@ -33,4 +34,29 @@
 .project_footer{
     display: flex;
     flex-direction: row;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#risk{
+    background-color: #FFF0F0;
+    color: #FF6157;
+    height: 32px;
+    width: 72px;
+    border-radius: 24px;
+    justify-content: center;
+}
+.filter{
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-left: 24px;
+    flex-direction: row;
+}
+#sortBy{
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
 }

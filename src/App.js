@@ -7,8 +7,7 @@ function App() {
   return (
     <div className="App">
       <Sidebar/>
-      <div>
-
+      <div className='appBody'>
       <Headerbar/>
       <Dashboard/>
       <CurrentProjects/>
