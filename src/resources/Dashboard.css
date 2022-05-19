@@ -64,3 +64,36 @@ align-items: center;
     width: fit-content;
     align-items: center;
 }
+circle{
+    transform-origin: center;
+    transition: all 0.5s;
+}
+circle:hover{
+    box-shadow: cadetblue;
+}
+.bold4{
+    font-weight:bold
+}
+.chart_table_header{
+    margin: 56px 0px 12px 0px;
+}
+.chart_table_body{
+    margin-top: 10px;
+
+}
+.chart_table_body_elem{
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 3px 3px 3px 13px;
+}
+#center_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 320px;
+    width: 320px;
+    position: absolute;
+    transition: all 0.5s;
+}
+

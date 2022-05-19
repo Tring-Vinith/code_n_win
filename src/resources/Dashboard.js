@@ -1,48 +1,38 @@
 import React, { Component } from 'react'
 import './Dashboard.css'
-import icons,{images} from './imageResources/dashboard/export'
+import icons,{images,ovals} from './imageResources/dashboard/export'
+import Chart from './imageResources/dashboard/piechart'
 
 export default class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state={
-      data:{
-        circumference:100,
-        labels: [
-          'Discovery    15  11%',
-          'Opportunity  19  1%',
-          'Ongoing      01  14%',
-          'Parked       01  1%',
-          'Ready        95  70%'
-        ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [11, 1, 14,1,70],
-          backgroundColor: [
-            '#0C56EA',
-            '#A84EFB',
-            '#FF9F3C',
-            '#FFDD20',
-            '#00B8A0'
-          ],
-          hoverOffset: 20,
-        }],
-      },
-      options:{
-        radius:100,
-        height:100,
-        width:100,
-        plugins: {
-          legend: {
-              display: true,
-              labels: {
-              },
-              position:'right',
-              borderRadius:10 ,
-          },
-
-      }
-      },
+      chartInput:[{
+        img:ovals[0],
+        title:"Discovery",
+        count:'15',
+        percentage:11
+      },{
+        img:ovals[1],
+        title:"Opportunity",
+        count:'19',
+        percentage:2.5
+      },{
+        img:ovals[2],
+        title:"Ongoing",
+        count:'01',
+        percentage:14
+      },{
+        img:ovals[3],
+        title:"Parked",
+        count:'01',
+        percentage:2.5
+      },{
+        img:ovals[4],
+        title:"Ready",
+        count:'95',
+        percentage:70
+      }],
       dropdownOptions:['Pland-App','Reuters-Emerald','Reuters-RCOM','SRMG-Manga ph3'],
       defaultOption:'Pland-App',
       imageGalleryIndex:{
@@ -74,7 +64,13 @@ export default class Dashboard extends Component {
       }
     }
   }
-  
+componentDidMount(){
+console.log(this.state.chartInput[0].percentage);
+  document.getElementById('discovery_arc').setAttribute('stroke-width',60)
+  document.getElementById('discovery_arc').setAttribute('r',110)
+  document.getElementById('discovery_arc').setAttribute('stroke-dasharray',`calc(${this.state.chartInput[0].percentage*11/12}*((22/7)*2.4)) calc((22/7)*240)`)
+  document.getElementById(this.state.chartInput[0].title+this.state.chartInput[0].count).style.backgroundColor='#eee'
+}
   render() {
     return (
       <div>
@@ -83,40 +79,13 @@ export default class Dashboard extends Component {
           <div className='project_overview '>
             <div id='project_overview_header'>
               <h3 style={{fontSize:"18px",width:'180px'}}>Projects overview</h3>
-              <div style={{margin:"0px 35px 0px 253px"}}>Download report</div>
+              <div style={{margin:"0px 35px 0px 253px",fontWeight:'bold',fontSize:'small',width:'120px'}}>Download report</div>
               <img src={icons.document} style={{margin:"0px 12px 0px 0px"}} alt='document' ></img>
               <img src={icons.pdf} style={{margin:"0px 24px 0px 0px"}} alt='pdf' ></img>
             </div>
             <div className='project_br'></div>
             <div id='project_overview_body' style={{'height':'400px','width':'400px'}}>
-              
-              <svg width="690" height="320">
-                <circle id='discovery_arc' cx="160" cy="340" r="120" stroke="#0C56EA" stroke-width="40" 
-                  stroke-dasharray="calc(100*((22/7)*2.4)) calc((22/7)*400)"   
-                  fill="transparent" 
-                  transform="rotate(90) translate(0 -500)"
-                />
-                <circle id='opportunity_arc' cx="160" cy="340" r="120" stroke="#A84EFB" stroke-width="40" 
-                  stroke-dasharray="calc(86*((22/7)*2.4)) calc((22/7)*400)"   fill="transparent" 
-                  transform="rotate(90) translate(0 -500)"
-                />
-                <circle id='ongoing_arc' cx="160" cy="340" r="120" stroke="#FF9F3C" stroke-width="40" 
-                  stroke-dasharray="calc(85*((22/7)*2.4)) calc((22/7)*400)" 
-                  fill="transparent" 
-                  transform="rotate(90) translate(0 -500)"
-                />
-                <circle id='parked_arc' cx="160" cy="340" r="120" stroke="#FFDD20" stroke-width="40" 
-                  stroke-dasharray="calc(71*((22/7)*2.4)) calc((22/7)*400)" 
-                  fill="transparent" 
-                  transform="rotate(90) translate(0 -500)"
-                />
-                <circle id='ready_arc' cx="160" cy="340" r="120" stroke="#00B8A0" stroke-width="40" 
-                  stroke-dasharray="calc(70*((22/7)*2.4)) calc((22/7)*400)" 
-                  fill="transparent" 
-                  transform="rotate(90) translate(0 -500)"
-                />
-                <text x="140" y="170">hello</text>
-              </svg>
+              {Chart(this.state.chartInput)}
             </div>
           </div>
           <div className='project_gallery'>
@@ -133,7 +102,7 @@ export default class Dashboard extends Component {
             <div id='project_gallery_body'>
             <div id='image_gallery'>
               {images.map((img,index)=>{
-                return(<img src={img} alt={'img'+index} className='image_source'></img>)
+                return(<img src={img} alt={'img'+index} key={'img'+index} className='image_source'></img>)
               })}
               
             </div>

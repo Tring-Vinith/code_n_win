@@ -19,9 +19,10 @@ export default class Headerbar extends Component {
     handleClick=()=>{
       let addProject=document.getElementById("addProject");
       addProject.style.backgroundColor="#3B9C0E"
-      setInterval(()=>{
-        addProject.style.backgroundColor="#5BBC2E";
-      },100)
+      addProject.style.boxShadow='0px 10px 40px rgba(0, 0, 0, 0.3)'
+      addProject.style.backgroundColor='#fff'
+      addProject.style.color='#000'
+      document.getElementById('add').setAttribute('src',imageSrc.icon_plus_black)
     }
   render() {
     return (
@@ -30,7 +31,6 @@ export default class Headerbar extends Component {
               <img src={imageSrc.search_icon} 
                   onClick={(e)=>{
                     this.search();
-                    //this.handleClick();
                     e.target.style.backgroundColor='#ccc'
                   setInterval(()=>{
                     e.target.style.backgroundColor='#eee'
@@ -51,7 +51,7 @@ export default class Headerbar extends Component {
             <div className='br'></div>
             <button id='addProject' onClick={this.handleClick}>
               <img id='add' src={imageSrc.icon_plus} alt='Add'></img> 
-              <label id='addproject'>Add project</label>  
+              <label id='addproject' >Add project</label>  
             </button>
           </div>
       </div>

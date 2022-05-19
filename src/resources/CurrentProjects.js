@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import project_footer_thumbs, {
-  chatIcon,icon_menu,icon_filter
+  chatIcon,icon_menu,icon_filter,chatIconGreen,icon_filter_green
 } from "./imageResources/currentProjects/export";
 import "./CurrentProject.css";
 class Projects extends Component {
@@ -224,7 +224,7 @@ class Projects extends Component {
               flexDirection: "row",
               height: "45px",
               width: "188px",
-              marginLeft: "238px",
+              marginLeft: "230px",
             }}
           >
             <div
@@ -232,17 +232,17 @@ class Projects extends Component {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "end",
+                width:'200px'
               }}
             >
-              <h3 style={{ margin: 0 }}>{this.state.scrum_master}</h3>
-              <p style={{ margin: 0, color: "#939598", fontWeight: "small" }}>
-                {"Scrum master"}
-              </p>
+              <div style={{ margin: 0}}>{this.state.scrum_master}</div>
+              <div style={{ margin: 0, color: "#939598", fontSize: "small" }}>Scrum master</div>
             </div>
             <img
               src={chatIcon}
               style={{ marginLeft: "16px" }}
               alt="thumbs"
+              onClick={(e)=>{e.target.setAttribute('src',chatIconGreen)}}
             ></img>
           </div>
         </div>
@@ -373,8 +373,9 @@ export default class CurrentProjects extends Component {
                     <option value="Peoples working">Peoples working</option>
                 </select>
               </div>
-              <div className="flex-row filter" >
-                  <img src={icon_filter} alt="filter"></img>
+              <div className="flex-row filter" 
+              onClick={()=>{document.getElementById('filter').setAttribute('src',icon_filter_green)}}>
+                  <img src={icon_filter} alt="filter" id="filter"></img>
                   <div>Filter</div>
               </div>
           </div>

@@ -2,13 +2,7 @@
 body {
   font-family: 'Poppins';
   margin: 0;
-  
-  /* @font-face {
-    font-family: 'MyFont';
-    src: local('MyFont'), url(./fonts/Font-Poppins.zip) format('woff');
-  
-  }
-   */
+background-color: #eee;
   
 }
 
