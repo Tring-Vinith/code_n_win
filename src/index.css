@@ -1,17 +1,13 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Font-Poppins/Font-Poppins/Poppins-Medium.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
 body {
+  font-family: 'Poppins';
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  /* font-family: 'poppins'; */
-  @font-face {
-    font-family: 'MyFont';
-    src: local('MyFont'), url(./fonts/Font-Poppins.zip) format('woff');
-    /* other formats include: 'woff2', 'truetype, 'opentype',
-                              'embedded-opentype', and 'svg' */
-  }
+  background-color: #eee;
 }
 
 code {

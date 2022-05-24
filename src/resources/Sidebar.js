@@ -34,7 +34,7 @@ export default class Sidebar extends Component {
         (
         <div  className='sidebarElems' onClick={(e)=>{this.changeColour(e);}}
           style={{'backgroundColor':sb_element_bg_active}}>
-          <div style={{"backgroundColor":"#0f0", 'padding':'25px 0px', "transition":"all 0.5s", color:"#0f0"}}>.</div>
+          <div style={{"backgroundColor":"#0f0", 'padding':'25px 1.5px', color:"#0f0"}}></div>
           <img src={active_icons[field]} alt='icon' className='sidebarIcons'/>
           <label className='sidebarFields' style={{"color":'#fff'}}>{field}</label>
         </div>):
@@ -50,7 +50,7 @@ export default class Sidebar extends Component {
   render() {
     return (
         <div className='sidebar' style={{"backgroundColor":"#04162C"}}>
-            <div style={{"display":"flex","flexDirection":"row", 'margin':'30px'}}>
+            <div className='flex-row' style={{'margin':'34px'}}>
                 <h1 style={{"color":"#fff", "margin":"0px"}}>tring</h1><h1 style={{"color":"#5bbc2e", "margin":"0px"}}>hub</h1>
             </div>
             <div className='sidebarList'>

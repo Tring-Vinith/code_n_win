@@ -1,7 +1,10 @@
 .App{
-  background-color: #ddd;
+  background-color: #eee;
   height: min-content;
   width: max-content;
   display: flex;
   flex-direction: row;
+}
+.appBody{
+  width: 1180px;
 }
