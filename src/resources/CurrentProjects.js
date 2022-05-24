@@ -7,7 +7,6 @@ import project_footer_thumbs, {
   chatIconGreen,
   icon_filter_green,
 } from "./imageResources/currentProjects/export";
-// import projects from "./imageResources/currentProjects/projects";
 import "./CurrentProject.css";
 import moment from "moment";
 class Projects extends Component {
@@ -304,14 +303,12 @@ export default function CurrentProjects(){
     }
   }`)
 const {error,loading,data}=useQuery(FETCH_PROJECTS);
-// console.log(error,loading,data);
 React.useEffect(()=>{
   if(!loading){
   setLoading(false)
   setPtojects( data.projects );
   console.log(data.projects,error,loading);}
 },[loading,data,error])
-if(!load){
     return (
       <div className="currentProjects">
         <div className="flex-row" style={{ flexDirection: "row" }}>
@@ -349,4 +346,4 @@ if(!load){
         </div>
       </div>
     );
-}}
+}
