@@ -85,8 +85,5 @@ let circle=(attributes)=>{
         </div>
     </div>
   );
-};
-
-
-
+}
 export default Chart;

@@ -7,7 +7,7 @@ import {ApolloClient,ApolloProvider,InMemoryCache,HttpLink,from} from '@apollo/c
 import { onError} from '@apollo/client/link/error'
 const errorLink=onError(({grapqlErrors,networkError})=>{
   if(grapqlErrors){
-    grapqlErrors.map(({message,location,path}) => {
+    grapqlErrors.map(({message,location,_path}) => {
       alert(`Graphql error ${message} at ${location}`)
       return this
     })

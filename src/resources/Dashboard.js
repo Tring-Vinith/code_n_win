@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Dashboard.css'
 import icons,{images,ovals} from './imageResources/dashboard/export'
-import Chart from './imageResources/dashboard/piechart'
+import Chart from './imageResources/dashboard/Chart'
 
 export default class Dashboard extends Component {
   constructor(props){
