@@ -9,7 +9,7 @@ function Chart  (inputs) {
             <img src={img} alt='bulletin' style={{alignItems:'center'}}></img>
             <div style={{marginLeft:'10px',width:'180px'}}>{title}</div>
             <div style={{width:'56px'}}>{count}</div>
-            <div >{percentage+"%"}</div>
+            <div className="flex-row" style={{width:'50px',flexDirection:'row-reverse'}}><div>{percentage+"%"}</div></div>
         </div>)
     }
     //Changing chart Element
@@ -20,7 +20,6 @@ function Chart  (inputs) {
             document.getElementsByClassName('pieChart').item(index).setAttribute('r',120)
             document.getElementsByClassName('pieChart').item(index).setAttribute('stroke-dasharray',`calc(${inputs[index].percentage}*((22/7)*2.4)) calc((22/7)*240)`)
             document.getElementsByClassName('chart_table_body_elem').item(index).style.backgroundColor='#fff'
-
         }
         document.getElementById(acrElem).setAttribute('stroke-dasharray',`calc(${percentage*11/12}*((22/7)*2.4)) calc((22/7)*240)`)
         document.getElementById(acrElem).setAttribute('stroke-width',60)
@@ -29,7 +28,7 @@ function Chart  (inputs) {
         document.getElementById('center_text1').innerText=percentage+'%'
         document.getElementById('center_text2').innerText=title
     }
-    //Circle Element
+//Circle Element
 let circle=(attributes)=>{
     let totalPercentage=0
     for(let len=attributes.len;len<5;len++)
@@ -49,7 +48,7 @@ let circle=(attributes)=>{
     ></circle>)}
   return (
     <div className="flex-row">
-        {/** Pichart part */}
+{/** Pichart part */}
         <svg width="320" height="320">
         {circle({id:'discovery_arc',percentage:inputs[0].percentage,len:1,stroke:'#0C56EA'})}
         {circle({id:'opportunity_arc',percentage:inputs[1].percentage,len:2,stroke:'#A84EFB'})}
@@ -57,7 +56,7 @@ let circle=(attributes)=>{
         {circle({id:'parked_arc',percentage:inputs[3].percentage,len:4,stroke:'#FFDD20'})}
         {circle({id:'ready_arc',percentage:inputs[4].percentage,len:5,stroke:'#00B8A0'})}
         </svg>
-        {/* Pie chart center text part */}
+{/* Pie chart center text part */}
         <div id="center_text">
             <div 
             style={{fontSize:'xx-large',fontWeight:'1000'}} 
@@ -72,7 +71,7 @@ let circle=(attributes)=>{
                 {inputs[0].title}
             </div>
         </div>
-        {/* Pie chart Legends part */}
+{/* Pie chart Legends part */}
         <div style={{marginLeft:'320px',marginBottom:'100px',position:'absolute'}}>
             <div className="chart_table_header flex-row">
                 <div className="bold4">Project Status</div>

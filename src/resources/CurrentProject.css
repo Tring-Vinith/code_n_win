@@ -60,3 +60,26 @@
     border-radius: 6px;
     border: none;
 }
+.column-reverse{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+.bold{
+    font-weight: bold;
+    font-size: large;
+}
+.light{
+    font-weight: lighter;
+    font-size: small;
+    color: #aaa;
+}

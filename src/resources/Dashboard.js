@@ -88,6 +88,8 @@ console.log(this.state.chartInput[0].percentage);
               {Chart(this.state.chartInput)}
             </div>
           </div>
+
+      {/**Project Gallery */}
           <div className='project_gallery'>
             <div id='project_gallery_header'>
               <h3 style={{margin:'0px 0px 0px 24px'}}>Project Gallery</h3>              
@@ -106,15 +108,16 @@ console.log(this.state.chartInput[0].percentage);
               })}
               
             </div>
-            <div id='project_gallery_footer'>
-
+            <div className='flex-row'  style={{marginTop:'10px',alignItems:'end'}}>
               <div id='index' >
                 <img src={icons.left_arrrow} alt='left'onClick={()=>{this.changeIndex(false)}}/>
                 {this.state.imageGalleryIndex.currentIndex +
                 '/'+this.state.imageGalleryIndex.totalIndex}
                 <img src={icons.right_arrrow} alt='right'onClick={()=>{this.changeIndex(true)}}/>
               </div>
-              <div id='addscreens'>
+              <div id='addscreens' className='flex-row' style={{marginLeft:'176px'}}>
+                <img src={icons.add_new} alt='add' onClick={(e)=>{e.target.src=icons.add_new_active}}></img>
+                <div style={{marginLeft:'5px'}}>Add screens</div>
               </div>
             </div>
             </div>
