@@ -54,7 +54,7 @@
 }
 .projectWindow{
     padding: 20px;
-    height:50vh;
+    height:600px;
     width:500px;
     margin:25vh 15vw;
     position:absolute;
@@ -86,6 +86,26 @@
     height: auto;
     height: -webkit-fill-available;
 }
+.cancel{
+    background-color: #f66;
+    border-radius: 4px;
+    border: none;
+    padding: 7px 15px;
+    transition: all 0.5s;
+}
+.submit{
+    background-color: #6ae;
+    border-radius: 4px;
+    border: none;
+    padding: 7px 15px;
+    transition: all 0.5s;
+}
+.cancel:hover{
+    background-color: #f22;
+}
+.submit:hover{
+    background-color: #26e;
+}
 #notification{
     margin: 0px 0px;
 }
@@ -95,4 +115,17 @@
     width: 1px;
     color: #F2F3F5;
     margin: 8px 21px;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+background: #fff; 
+}
+::-webkit-scrollbar-thumb {
+background: #ddd; 
+border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #888; 
 }

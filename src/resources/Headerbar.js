@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 import './Headerbar.css'
 import {imageSrc} from './imageResources/headerbar/export'
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CreateProjectWindow from './components/createProjectWindow';
 export default class Headerbar extends Component {
     constructor(props){
       super(props)
         this.state={
           notification:true,
           searchVal:'',
-          projectWindow:false
+          projectWindow:false,
+          createProject:''
         }
         this.clearNotification.bind(this)
         this.search.bind(this)
         this.handleClick.bind(this)
+        this.handleSubmit.bind(this)
+        this.handleCancel.bind(this)
     }
     search=()=>{
       console.log(this.state.searchVal)
@@ -19,7 +25,119 @@ export default class Headerbar extends Component {
     clearNotification=()=>{
       this.setState({notification:false})
     }
+    handleSubmit=()=>{
+      console.log('Clicked');
+      const project_name=document.getElementById('project_name_input').value,
+      project_profile=document.getElementById('project_profile').value,
+      scrum_master=document.getElementById('scrum_master_input').value,
+      start_date=document.getElementById('start_date_input').value,
+      end_date=document.getElementById('end_date_input').value,
+      backlog=document.getElementById('backlog_input').value,
+      backlogs=document.getElementById('backlogs_input').value,
+      blocker=document.getElementById('blocker_input').value,
+      completed=document.getElementById('completed_input').value,
+      current_sprint=document.getElementById('current_sprint_input').value,
+      dev_in_progress=document.getElementById('dev_in_progress_input').value,
+      flagged=document.getElementById('flagged_input').value,
+      issues=document.getElementById('issues_input').value,
+      risk=document.getElementById('risk_input').value,
+      scope_change=document.getElementById('scope_change_input').value,
+      time_elapsed=document.getElementById('time_elapsed_input').value,
+      velocity=document.getElementById('velocity_input').value,
+      work_completed=document.getElementById('work_completed_input').value;
+      if(project_name&&
+        scrum_master&&
+        start_date&&
+        end_date&&
+        backlog&&
+        backlogs&&
+        completed&&
+        blocker&&
+        current_sprint&&
+        dev_in_progress&&
+        flagged&&
+        issues&&
+        scope_change&&
+        time_elapsed&&
+        velocity&&
+        work_completed)
+      {let state=this.state
+      state['createProject']={
+        backlog: backlog,
+  backlogs: backlogs,
+  blocker: blocker,
+  completed: completed,
+  currentSprint: current_sprint,
+  dev_in_progress: dev_in_progress,
+  endDate: end_date,
+  flagged: flagged,
+  issues: issues,
+  // logo: logo,
+  name: project_name,
+  risk: risk,
+  scope_change: scope_change,
+  scrum_master: scrum_master,
+  startDate: start_date,
+  time_elapsed: time_elapsed,
+  velocity: velocity,
+  work_completed: work_completed,
+      }
+      console.log(this.state.createProject,state);
+      this.setState({state})
+      console.log(this.state.createProject);
+      this.handleClick()
+      toast.success("Project will be added!", { className: 'toaster-css', hideProgressBar: true, });
+    }
+      else toast.warn('Please enter values before submit')
+    }
+    handleCancel=()=>{
+      const project_name=document.getElementById('project_name_input').value,
+      project_profile=document.getElementById('project_profile').value,
+      scrum_master=document.getElementById('scrum_master_input').value,
+      start_date=document.getElementById('start_date_input').value,
+      end_date=document.getElementById('end_date_input').value,
+      backlog=document.getElementById('backlog_input').value,
+      backlogs=document.getElementById('backlogs_input').value,
+      blocker=document.getElementById('blocker_input').value,
+      completed=document.getElementById('completed_input').value,
+      current_sprint=document.getElementById('current_sprint_input').value,
+      dev_in_progress=document.getElementById('dev_in_progress_input').value,
+      flagged=document.getElementById('flagged_input').value,
+      issues=document.getElementById('issues_input').value,
+      risk=document.getElementById('risk_input').value,
+      scope_change=document.getElementById('scope_change_input').value,
+      time_elapsed=document.getElementById('time_elapsed_input').value,
+      velocity=document.getElementById('velocity_input').value,
+      work_completed=document.getElementById('work_completed_input').value;
+      if(project_name||
+        scrum_master||
+        start_date||
+        end_date||
+        backlog||
+        backlogs||
+        completed||
+        blocker||
+        current_sprint||
+        dev_in_progress||
+        flagged||
+        issues||
+        risk||
+        scope_change||
+        time_elapsed||
+        velocity||
+        work_completed||
+        project_profile
+        )
+      {
+        if(window.confirm('Are you sure want to cancel?')===true)
+        {
+        this.handleClick()
+        }
+    }
+    else this.handleClick()
+    }
     handleClick=()=>{
+      
       let state=this.state
       state['projectWindow']=!this.state.projectWindow
       this.setState({state})
@@ -28,24 +146,12 @@ export default class Headerbar extends Component {
     }
     projectWindow=
     (<div className='projectWindow' >
-      <div className='column' style={{'padding':'10px',backgroundColor:'#def',borderRadius:'10px'}}>
-      <div >Project logo</div>
-      <img style={{'height':'40px',width:'40px','borderRadius':'10px',border:'solid',borderColor:'#ddd'}} alt=''></img>
-      <input type={'file'}  name='project_profile' onChange={(e)=>{console.log(e.target.files[0]);e.target.previousElementSibling.setAttribute('src',URL.createObjectURL(e.target.files[0]))}}></input>
-      <label>Project name:</label>
-      <input type={'text'}  maxLength={25} name='project_name'></input>
-      <label>Scrum master:</label>
-      <input type={'text'} maxLength={25} name='scrum_master'></input>
-      <div className='flex-row' style={{'justifyContent':'space-around'}}>
-        <label>Start date:</label>
-        <input type={'date'} maxLength={25} name='start_date'></input>
-        <label>End date:</label>
-        <input type={'date'} maxLength={25} name='end_date'></input>
+      <div style={{'overflowY':'scroll'}}>
+      <CreateProjectWindow ></CreateProjectWindow>
       </div>
-      </div>
-      <div className='flex-row' style={{'justifyContent':'space-around',margin:'10px 0px'}}>
-      <button onClick={()=>{this.handleClick(); if(window.confirm('Are you sure want to cancel?')===false)alert('Project cancelled')}} style={{'backgroundColor':'red',borderRadius:'3px','border':'none',padding:'5px 10px'}}>Cancel</button>
-      <button onClick={()=>{this.handleClick(); alert('Project will be added')}} style={{'backgroundColor':'#6ae',borderRadius:'3px','border':'none',padding:'5px 10px'}}>Submit</button>
+      <div className='flex-row' style={{'justifyContent':'space-around',marginTop:'20px'}}>
+      <button className='cancel' onClick={()=>{this.handleCancel()}}>Cancel</button>
+      <button className='submit' onClick={()=>{this.handleSubmit()}}>Submit</button>
       </div>
     </div>)
   
@@ -85,6 +191,7 @@ export default class Headerbar extends Component {
                 }
               }}
               ></input>
+            <ToastContainer transition={Zoom} position={toast.POSITION.TOP_CENTER} autoClose={1500}/>
           </div>
           {this.state.projectWindow && this.projectWindow}
           <div id='headerbar-right' >
@@ -100,6 +207,7 @@ export default class Headerbar extends Component {
               <label id='addproject'>Add project</label>  
             </button>
           </div>
+          
       </div>
     )
   }

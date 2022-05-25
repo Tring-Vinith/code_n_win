@@ -1,5 +1,5 @@
 import React, { Component,useState } from "react";
-import {gql,useQuery} from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import project_footer_thumbs, {
   chatIcon,
   icon_menu,
@@ -9,6 +9,7 @@ import project_footer_thumbs, {
 } from "./imageResources/currentProjects/export";
 import "./CurrentProject.css";
 import moment from "moment";
+import PROJECT_QUERIES from "./graphql/projectQueries";
 class Projects extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +39,9 @@ class Projects extends Component {
         dev_in_progress:props.props.dev_in_progress,
         completed:props.props.completed,
       }, 
+      menu:false
     };
+    this.openMenu.bind(this)
   }
   sprint_details1 = (prop1, prop2) => {
     return (
@@ -68,6 +71,12 @@ class Projects extends Component {
       </div>
     );
   };
+  openMenu(e){
+    console.log(e.target.innerText);
+    let state=this.state
+    state['menu']=!this.state.menu
+    this.setState({state});
+  }
   render() {
     return (
       <div className="projects">
@@ -91,13 +100,19 @@ class Projects extends Component {
           <div
             className="flex-row"
             style={{
-              marginLeft: "420px",
+              marginLeft: "320px",
               position: "absolute",
               flexDirection: "row-reverse",
-              width: "90px",
+              width: "180px",
             }}
           >
-            <img src={icon_menu} alt="menu"></img>
+            <img src={icon_menu} alt="menu" onClick={this.openMenu.bind(this)}></img>
+            {this.state.menu&&(
+            <div className="column menu" onClick={this.openMenu.bind(this)}>
+              <div> Edit</div>
+              <div>Delete</div>
+            </div>
+          )}
             {this.state.risk && (
               <div id="risk" className="flex-row">
                 Risk
@@ -279,30 +294,7 @@ class Projects extends Component {
 export default function CurrentProjects(){
   const [projectss, setPtojects]=useState([])
   const [load, setLoading]=useState(true)
-    const FETCH_PROJECTS =gql(`{
-    projects{
-      id
-      logo
-      name
-      currentSprint
-      startDate
-      endDate
-      issues
-      backlogs
-      scrum_master
-      time_elapsed
-      work_completed
-      scope_change
-      blocker
-      flagged
-      backlog
-      dev_in_progress
-      completed
-      velocity
-      risk
-    }
-  }`)
-const {error,loading,data}=useQuery(FETCH_PROJECTS);
+  const {error,loading,data}=useQuery(PROJECT_QUERIES.FETCH_PROJECTS);
 React.useEffect(()=>{
   if(!loading){
   setLoading(false)
@@ -340,9 +332,15 @@ React.useEffect(()=>{
         </div>
 
         <div className="projectsContainer">
-          {!load && projectss.map((project) => {
+          {!load ? (projectss.map((project) => {
             return <Projects props={project} />;
-          })}
+          })):
+          (
+          <div className="flex-row" style={{'alignContent':'center','justifyContent':'center',width:'100%'}}>
+            <h2 style={{'color':'#ccc'}}> Loading..</h2>
+          </div>
+          )
+        }
         </div>
       </div>
     );

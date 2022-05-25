@@ -83,3 +83,19 @@
     font-size: small;
     color: #aaa;
 }
+.menu{
+    background-color: rgb(238, 238, 238);
+    padding: 1px 2px;
+    margin-left: 10px;
+}
+.menu div{
+        background-color: #fff;
+        border-radius: 3px;margin: 0px ;
+        padding: 0px 10px;
+        color: #777;
+        transition: all 0.2s;
+}
+.menu div:hover{
+    background-color: #dfd;
+    color: #000;
+}
