@@ -1,5 +1,5 @@
 import React, { Component,useState } from "react";
-import {useQuery} from '@apollo/client'
+import {disableExperimentalFragmentVariables, useQuery} from '@apollo/client'
 import project_footer_thumbs, {
   chatIcon,
   icon_menu,
@@ -294,7 +294,7 @@ class Projects extends Component {
 export default function CurrentProjects(){
   const [projectss, setPtojects]=useState([])
   const [load, setLoading]=useState(true)
-  const [limit, setLimit]=useState(8)
+  const limit=8
   const [offset, setOffset]=useState(0)
   const [max, setMax]=useState(1)
   const {error,loading,data}=useQuery(PROJECT_QUERIES.FETCH_PROJECTS,{variables:{limit:limit,offset:offset}});
@@ -304,14 +304,16 @@ React.useEffect(()=>{
   if(!loading ){
     if(data.projects.length!==0){
       setLoading(false)
-      setPtojects( data.projects);}}
+      setPtojects( data.projects);}
+    }else if(error)console.log(error);
   if(!loading1){
     if(data1) 
     {
       setMax(max+1)
     }
+    else if(error1)console.log(error1);
   }
-},[loading,data,error,max,loading1,data1])
+},[loading,data,error,max,loading1,data1,error1])
     return (
       <div className="currentProjects">
         <div className="flex-row" style={{ flexDirection: "row" }}>
