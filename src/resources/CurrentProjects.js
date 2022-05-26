@@ -1,5 +1,5 @@
 import React, { Component,useState } from "react";
-import {disableExperimentalFragmentVariables, useQuery} from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import project_footer_thumbs, {
   chatIcon,
   icon_menu,
