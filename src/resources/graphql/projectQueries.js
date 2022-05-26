@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-const FETCH_PROJECTS = gql (`{
-    projects{
+const FETCH_PROJECTS = gql (`query Projects($limit:Int!,$offset:Int!){
+    projects(limit:$limit,offset:$offset){
       id
       logo
       name
@@ -23,29 +23,25 @@ const FETCH_PROJECTS = gql (`{
       risk
     }
   }`)
-  const CREATE_PROJECT = (args)=>{
-      return gql(`mutation  {
-        createProject(createProjectInput:{
-              logo: ${args.logo},
-              name: ${args.name},
-              currentSprint: ${args.currentSprint},
-              startDate: ${args.startDate},
-              endDate: ${args.endDate},
-              issues: ${args.issues},
-              backlogs: ${args.backlogs},
-              scrum_master: ${args.scrum_master},
-              time_elapsed: ${args.time_elapsed},
-              work_completed: ${args.work_completed},
-              scope_change: ${args.scope_change},
-              blocker: ${args.blocker},
-              flagged: ${args.flagged},
-              backlog: ${args.backlog},
-              dev_in_progress: ${args.dev_in_progress},
-              completed: ${args.completed},
-              velocity: ${args.velocity},
-              risk: ${args.risk},
-      })`)
-  }
+  const CREATE_PROJECT =  
+  gql(`
+        mutation Create($createProjectInput: CreateProjectInput!) 
+        {
+        createProject(createProjectInput:$createProjectInput)
+        {
+            id
+    backlog
+    backlogs
+    blocker
+    completed
+    name
+    scrum_master
+    dev_in_progress
+    currentSprint
+        }
+    }
+            `)
+  
   const PROJECT_QUERIES = {
       FETCH_PROJECTS:FETCH_PROJECTS, 
       CREATE_PROJECT:CREATE_PROJECT,

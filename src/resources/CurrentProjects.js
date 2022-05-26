@@ -79,7 +79,7 @@ class Projects extends Component {
   }
   render() {
     return (
-      <div className="projects">
+      <div className="projects" key={this.state.id}>
         <div style={{ backgroundColor: "orange", height: "10px" }}></div>
         {/* Project header part */}
         <div className="project_header">
@@ -294,13 +294,24 @@ class Projects extends Component {
 export default function CurrentProjects(){
   const [projectss, setPtojects]=useState([])
   const [load, setLoading]=useState(true)
-  const {error,loading,data}=useQuery(PROJECT_QUERIES.FETCH_PROJECTS);
+  const [limit, setLimit]=useState(8)
+  const [offset, setOffset]=useState(0)
+  const [max, setMax]=useState(1)
+  const {error,loading,data}=useQuery(PROJECT_QUERIES.FETCH_PROJECTS,{variables:{limit:limit,offset:offset}});
+  const {error1,loading1,data1}=useQuery(PROJECT_QUERIES.FETCH_PROJECTS,{variables:{limit:limit,offset:(offset+1)}});
+
 React.useEffect(()=>{
-  if(!loading){
-  setLoading(false)
-  setPtojects( data.projects );
-  console.log(data.projects,error,loading);}
-},[loading,data,error])
+  if(!loading ){
+    if(data.projects.length!==0){
+      setLoading(false)
+      setPtojects( data.projects);}}
+  if(!loading1){
+    if(data1) 
+    {
+      setMax(max+1)
+    }
+  }
+},[loading,data,error,max,loading1,data1])
     return (
       <div className="currentProjects">
         <div className="flex-row" style={{ flexDirection: "row" }}>
@@ -332,8 +343,8 @@ React.useEffect(()=>{
         </div>
 
         <div className="projectsContainer">
-          {!load ? (projectss.map((project) => {
-            return <Projects props={project} />;
+          {!load ? (projectss.map((project, index) => {
+            return <Projects props={project} key={index} />;
           })):
           (
           <div className="flex-row" style={{'alignContent':'center','justifyContent':'center',width:'100%'}}>
@@ -341,6 +352,23 @@ React.useEffect(()=>{
           </div>
           )
         }
+        {!load&&(
+        <div className="flex-row" style={{'justifyContent':'center','width':'100%'}}>
+          <div className="pagination"
+          style={offset!==0?{color:'#000', cursor:'context-menu'}:{color:'#999',cursor:'context-menu'}}
+          onClick={()=>{
+            if(offset<=1) ;
+            else setOffset(offset-limit)
+          }}>{'<'}</div>
+          {offset/limit+1}/{max}
+          <div className="pagination"
+          style={(offset/limit+1)!==max?{color:'#000', cursor:'context-menu'}:{color:'#999',cursor:'context-menu'}}
+          onClick={()=>{
+            if(((offset/limit)+1)===max);
+            else setOffset(offset+limit)
+          }}
+          >{'>'}</div>
+        </div>)}
         </div>
       </div>
     );

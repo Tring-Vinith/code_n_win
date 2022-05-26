@@ -9,6 +9,7 @@ const errorLink=onError(({grapqlErrors,networkError})=>{
   if(grapqlErrors){
     grapqlErrors.map(({message,location,_path}) => {
       alert(`Graphql error ${message} at ${location}`)
+      console.log(grapqlErrors);
       return this
     })
   }

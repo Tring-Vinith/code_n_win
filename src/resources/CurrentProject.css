@@ -94,8 +94,20 @@
         padding: 0px 10px;
         color: #777;
         transition: all 0.2s;
+      
 }
 .menu div:hover{
     background-color: #dfd;
     color: #000;
+}
+.pagination{
+    cursor: context-menu;
+    background-color: #def;
+    transition: all 0.5s;
+    padding: 3px 6px;
+    border-radius: 3px;
+    margin: 0px 6px;
+}
+.pagination:hover{
+background-color: #8ef;
 }

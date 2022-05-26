@@ -50,7 +50,7 @@ export default class Sidebar extends Component {
   render() {
     return (
         <div className='sidebar' style={{"backgroundColor":"#04162C"}}>
-            <div className='flex-row' style={{'margin':'34px'}}>
+            <div className='flex-row' style={{'margin':'34px',cursor:'context-menu'}}>
                 <h1 style={{"color":"#fff", "margin":"0px"}}>tring</h1><h1 style={{"color":"#5bbc2e", "margin":"0px"}}>hub</h1>
             </div>
             <div className='sidebarList'>

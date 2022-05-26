@@ -1,34 +1,32 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './Headerbar.css'
 import {imageSrc} from './imageResources/headerbar/export'
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CreateProjectWindow from './components/createProjectWindow';
-export default class Headerbar extends Component {
-    constructor(props){
-      super(props)
-        this.state={
-          notification:true,
-          searchVal:'',
-          projectWindow:false,
-          createProject:''
-        }
-        this.clearNotification.bind(this)
-        this.search.bind(this)
-        this.handleClick.bind(this)
-        this.handleSubmit.bind(this)
-        this.handleCancel.bind(this)
+import PROJECT_QUERIES from './graphql/projectQueries';
+import { useMutation } from '@apollo/client';
+export default function Headerbar() {
+   const [notification, setNotification]=useState(true);
+   const [searchVal, setSearchVal]=useState('');
+   const [projectWindow, setProjectWindow]=useState(false)
+    const [createProj]=useMutation(PROJECT_QUERIES.CREATE_PROJECT,{
+      onCompleted: (res) => {
+        console.log(res);
+      },
+      onError: error => {
+        console.log(error)
+      },
+    })
+   const search=()=>{
+      console.log(searchVal)
     }
-    search=()=>{
-      console.log(this.state.searchVal)
+   const clearNotification=()=>{
+     setNotification(false)
     }
-    clearNotification=()=>{
-      this.setState({notification:false})
-    }
-    handleSubmit=()=>{
-      console.log('Clicked');
+   function HandleSubmit(){
       const project_name=document.getElementById('project_name_input').value,
-      project_profile=document.getElementById('project_profile').value,
+      // project_profile=document.getElementById('project_profile').value,
       scrum_master=document.getElementById('scrum_master_input').value,
       start_date=document.getElementById('start_date_input').value,
       end_date=document.getElementById('end_date_input').value,
@@ -40,11 +38,11 @@ export default class Headerbar extends Component {
       dev_in_progress=document.getElementById('dev_in_progress_input').value,
       flagged=document.getElementById('flagged_input').value,
       issues=document.getElementById('issues_input').value,
-      risk=document.getElementById('risk_input').value,
       scope_change=document.getElementById('scope_change_input').value,
       time_elapsed=document.getElementById('time_elapsed_input').value,
       velocity=document.getElementById('velocity_input').value,
       work_completed=document.getElementById('work_completed_input').value;
+      let risk=document.getElementById('risk_input').value==='true'?true:false;
       if(project_name&&
         scrum_master&&
         start_date&&
@@ -61,36 +59,36 @@ export default class Headerbar extends Component {
         time_elapsed&&
         velocity&&
         work_completed)
-      {let state=this.state
-      state['createProject']={
-        backlog: backlog,
-  backlogs: backlogs,
-  blocker: blocker,
-  completed: completed,
-  currentSprint: current_sprint,
-  dev_in_progress: dev_in_progress,
-  endDate: end_date,
-  flagged: flagged,
-  issues: issues,
-  // logo: logo,
-  name: project_name,
-  risk: risk,
-  scope_change: scope_change,
-  scrum_master: scrum_master,
-  startDate: start_date,
-  time_elapsed: time_elapsed,
-  velocity: velocity,
-  work_completed: work_completed,
+      {
+      
+    createProj({variables:{
+      createProjectInput:{
+        name:project_name,
+        scrum_master:scrum_master,
+        startDate:start_date,
+        endDate:end_date,
+        backlog:parseInt(backlog),
+        backlogs:parseInt(backlogs),
+        completed:parseInt(completed),
+        blocker:parseInt(blocker),
+        currentSprint:current_sprint,
+        dev_in_progress:parseInt(dev_in_progress),
+        flagged:parseInt(flagged),
+        issues:parseInt(issues),
+        logo:"logo",
+        risk:risk,
+        scope_change:parseInt(scope_change),
+        time_elapsed:parseInt(time_elapsed),
+        velocity:velocity,
+        work_completed:parseInt(work_completed),
       }
-      console.log(this.state.createProject,state);
-      this.setState({state})
-      console.log(this.state.createProject);
-      this.handleClick()
+    }})
+      handleClick()
       toast.success("Project will be added!", { className: 'toaster-css', hideProgressBar: true, });
     }
       else toast.warn('Please enter values before submit')
     }
-    handleCancel=()=>{
+    const handleCancel=()=>{
       const project_name=document.getElementById('project_name_input').value,
       project_profile=document.getElementById('project_profile').value,
       scrum_master=document.getElementById('scrum_master_input').value,
@@ -104,7 +102,6 @@ export default class Headerbar extends Component {
       dev_in_progress=document.getElementById('dev_in_progress_input').value,
       flagged=document.getElementById('flagged_input').value,
       issues=document.getElementById('issues_input').value,
-      risk=document.getElementById('risk_input').value,
       scope_change=document.getElementById('scope_change_input').value,
       time_elapsed=document.getElementById('time_elapsed_input').value,
       velocity=document.getElementById('velocity_input').value,
@@ -121,7 +118,6 @@ export default class Headerbar extends Component {
         dev_in_progress||
         flagged||
         issues||
-        risk||
         scope_change||
         time_elapsed||
         velocity||
@@ -129,39 +125,32 @@ export default class Headerbar extends Component {
         project_profile
         )
       {
-        if(window.confirm('Are you sure want to cancel?')===true)
-        {
-        this.handleClick()
-        }
+        if(window.confirm('Are you sure want to cancel?')===true)handleClick()
+      }
+    else handleClick()
     }
-    else this.handleClick()
-    }
-    handleClick=()=>{
-      
-      let state=this.state
-      state['projectWindow']=!this.state.projectWindow
-      this.setState({state})
-      this.state.projectWindow?document.getElementById('add').setAttribute('src',imageSrc.icon_plus_black):
+    const handleClick=()=>{
+      setProjectWindow(!projectWindow)
+      !projectWindow?document.getElementById('add').setAttribute('src',imageSrc.icon_plus_black):
       document.getElementById('add').setAttribute('src',imageSrc.icon_plus);
     }
-    projectWindow=
+    const ProjectWindow=
     (<div className='projectWindow' >
       <div style={{'overflowY':'scroll'}}>
       <CreateProjectWindow ></CreateProjectWindow>
       </div>
       <div className='flex-row' style={{'justifyContent':'space-around',marginTop:'20px'}}>
-      <button className='cancel' onClick={()=>{this.handleCancel()}}>Cancel</button>
-      <button className='submit' onClick={()=>{this.handleSubmit()}}>Submit</button>
+      <button className='cancel' onClick={handleCancel}>Cancel</button>
+      <button className='submit' onClick={HandleSubmit}>Submit</button>
       </div>
     </div>)
   
-  render() {
     return (
       <div id='Headerbar'>
           <div id='headerbar-left' >
               <img src={imageSrc.search_icon} 
                   onClick={(e)=>{
-                    this.search();
+                    search();
                     e.target.style.backgroundColor='#ccc'
                   setInterval(()=>{
                     e.target.style.backgroundColor='#eee'
@@ -177,32 +166,28 @@ export default class Headerbar extends Component {
               placeholder='Search your project here' 
               maxLength={20}
               onChange={(e)=>{
-                let state=this.state;
-                state['searchVal']=e.target.value;
-                this.setState({state})
+                setSearchVal(e.target.value)
               }}
               onKeyDown={(e)=>{
                 if(e.key==='Enter')
                 {
                 console.log(e.target.value);
-                let state=this.state;
-                state['searchVal']=e.target.value;
-                this.setState({state})
+                setSearchVal(e.target.value)
                 }
               }}
               ></input>
             <ToastContainer transition={Zoom} position={toast.POSITION.TOP_CENTER} autoClose={1500}/>
           </div>
-          {this.state.projectWindow && this.projectWindow}
+          {projectWindow && ProjectWindow}
           <div id='headerbar-right' >
             <img id='userImage' src={imageSrc.profile_pic} alt='user_image'></img>
             <div className='br'></div>
-            {this.state.notification?
-            (<img id='notification' src={imageSrc.notification_on} alt='notification' onClick={this.clearNotification}></img>)
+            {notification?
+            (<img id='notification' src={imageSrc.notification_on} alt='notification' onClick={clearNotification}></img>)
             :(<img id='notification' src={imageSrc.notification_off} alt='notification'></img>)
             }
             <div className='br'></div>
-            <button id='addProject' onClick={this.handleClick} className={this.state.projectWindow?'activeaddProject':'inactiveaddProject'}>
+            <button id='addProject' onClick={handleClick} className={projectWindow?'activeaddProject':'inactiveaddProject'}>
               <img id='add' src={imageSrc.icon_plus} alt='Add'></img> 
               <label id='addproject'>Add project</label>  
             </button>
@@ -210,5 +195,5 @@ export default class Headerbar extends Component {
           
       </div>
     )
-  }
+  
 }

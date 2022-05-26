@@ -65,7 +65,6 @@ export default class Dashboard extends Component {
     }
   }
 componentDidMount(){
-console.log(this.state.chartInput[0].percentage);
   document.getElementById('discovery_arc').setAttribute('stroke-width',60)
   document.getElementById('discovery_arc').setAttribute('r',110)
   document.getElementById('discovery_arc').setAttribute('stroke-dasharray',`calc(${this.state.chartInput[0].percentage*11/12}*((22/7)*2.4)) calc((22/7)*240)`)
@@ -104,7 +103,7 @@ console.log(this.state.chartInput[0].percentage);
             <div id='project_gallery_body'>
             <div id='image_gallery'>
               {images.map((img,index)=>{
-                return(<img src={img} alt={'img'+index} key={'img'+index} className='image_source'></img>)
+                return(<img key={index} src={img} alt={'img'+index} className='image_source' />)
               })}
               
             </div>
