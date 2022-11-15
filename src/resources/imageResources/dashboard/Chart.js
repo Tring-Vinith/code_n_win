@@ -1,3 +1,4 @@
+import React from "react"
 function Chart  (inputs) {
 //Chart legend table elements
     function chart_table_body_elem ({img,title,count,percentage}){
@@ -5,6 +6,9 @@ function Chart  (inputs) {
             <div className="chart_table_body_elem flex-row" id={title+count} onClick={()=>{
                 change_chart_element(title,count,percentage)}
             }
+            onMouseEnter={()=>{
+                change_chart_element(title,count,percentage)
+            }}
             style={{margin:'6px'}}>
             <img src={img} alt='bulletin' style={{alignItems:'center'}}></img>
             <div style={{marginLeft:'10px',width:'180px'}}>{title}</div>
@@ -28,12 +32,18 @@ function Chart  (inputs) {
         document.getElementById('center_text1').innerText=percentage+'%'
         document.getElementById('center_text2').innerText=title
     }
+    
 //Circle Element
 let circle=(attributes)=>{
+   
     let totalPercentage=0
     for(let len=attributes.len;len<5;len++)
         totalPercentage+=inputs[len].percentage
+    function print (){
+        console.log("Hello")
+    }
     return(
+        
     <circle
         className="pieChart"
         id={attributes.id}
@@ -45,17 +55,18 @@ let circle=(attributes)=>{
         fill="transparent"
         strokeDasharray={`calc(${attributes.percentage}*((22/7)*2.4)) calc((22/7)*240)`}
         transform={`rotate(${totalPercentage*3.6+90})`}
+        
     ></circle>)}
   return (
     <div className="flex-row">
 {/** Pichart part */}
-        <svg width="320" height="320">
+        <svg width="320" height="320" onMouseEnter={()=>{console.log("Hello")}}>
         {circle({id:'discovery_arc',percentage:inputs[0].percentage,len:1,stroke:'#0C56EA'})}
         {circle({id:'opportunity_arc',percentage:inputs[1].percentage,len:2,stroke:'#A84EFB'})}
         {circle({id:'ongoing_arc',percentage:inputs[2].percentage,len:3,stroke:'#FF9F3C'})}
         {circle({id:'parked_arc',percentage:inputs[3].percentage,len:4,stroke:'#FFDD20'})}
         {circle({id:'ready_arc',percentage:inputs[4].percentage,len:5,stroke:'#00B8A0'})}
-        </svg>
+        </svg> 
 {/* Pie chart center text part */}
         <div id="center_text">
             <div 

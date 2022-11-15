@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Sidebar from'./resources/Sidebar'
 import Dashboard from './resources/Dashboard';
@@ -32,9 +33,13 @@ function App() {
       <Sidebar/>
       <div className='appBody'>
       <Headerbar/>
+      <div className='scrollBody'>
       <Dashboard/>
       <CurrentProjects/>
       </div>
+      
+      </div>
+     
     </div>
     </ApolloProvider>
   );

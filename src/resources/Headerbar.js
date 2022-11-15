@@ -82,9 +82,16 @@ export default function Headerbar() {
         velocity:velocity,
         work_completed:parseInt(work_completed),
       }
-    }})
+    },onCompleted:()=>{
       handleClick()
       toast.success("Project will be added!", { className: 'toaster-css', hideProgressBar: true, });
+    },onError:(err)=>{
+      console.log(err);
+      toast.error('Error occured! Project Not added',{className:'toaster-css'})
+    }},
+    )
+      
+      
     }
       else toast.warn('Please enter values before submit')
     }

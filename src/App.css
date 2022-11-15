@@ -6,5 +6,10 @@
   flex-direction: row;
 }
 .appBody{
-  width: 1180px;
+  width: 80vw;
+ 
+}
+.scrollBody{
+  height: 85vh;
+  overflow-y: scroll;
 }

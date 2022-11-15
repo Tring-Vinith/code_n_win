@@ -22,10 +22,19 @@
     height: 54px;
     width: 54px;
     border-radius: 27px;
+    font-size: x-small;
+    text-align: start;
 }
 .project_header{
-    display:inline-flex;
+    display: inline-flex;
     align-items: center;
+    position: relative;
+    width: 100%;
+}
+.project_header_end{
+    flex-direction: row-reverse;
+    position: absolute;
+    right: 0px;
 }
 .project_duration{
     font-weight: lighter;
@@ -110,4 +119,9 @@
 }
 .pagination:hover{
 background-color: #8ef;
+}
+.imageThumbs{
+    margin-left: 24px;
+    height: 24px;
+    position: relative;
 }

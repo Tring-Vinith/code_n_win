@@ -97,3 +97,37 @@ circle:hover{
     transition: all 0.5s;
 }
 
+.donutchart{
+    height: 300px !important;
+    width: 500px !important;
+    transform: translateY(-18px);
+}
+.donutchart-arcs{
+    transform: rotateZ(90deg) rotateX(180deg);
+    border: none;
+}
+.donutchart-arcs-paths {
+    stroke: none;
+    width: 20px;
+}
+.selected{
+    opacity: 1;
+}
+.donutchart-innertext-label{
+    margin-top:55% ;
+    font-size: xxx-large;
+    color: #999 !important;
+    font-weight: initial;
+}
+
+.donutchart-innertext-value{
+    position: relative;
+    margin-top:45% ;
+    font-size: large;
+    font-weight: bold;
+}
+.donutchart-legend{
+    border-radius: 10px;
+    background-color: #999;
+    transform: translateY(30%) translateX(15%);
+}

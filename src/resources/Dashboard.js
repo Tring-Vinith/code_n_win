@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Dashboard.css'
 import icons,{images,ovals} from './imageResources/dashboard/export'
+import DonutChart from 'react-donut-chart'
 import Chart from './imageResources/dashboard/Chart'
 
 export default class Dashboard extends Component {
@@ -33,6 +34,24 @@ export default class Dashboard extends Component {
         count:'95',
         percentage:70
       }],
+      data:[
+        {
+          label:"Discovery",
+          value:11
+        },{
+          label:"Opportunity",
+          value:2.5
+        },{
+          label:"Ongoing",
+          value:14
+        },{
+          label:"Parked",
+          value:2.5
+        },{
+          label:"Ready",
+          value:70
+        }
+      ],
       dropdownOptions:['Pland-App','Reuters-Emerald','Reuters-RCOM','SRMG-Manga ph3'],
       defaultOption:'Pland-App',
       imageGalleryIndex:{
@@ -69,6 +88,10 @@ componentDidMount(){
   document.getElementById('discovery_arc').setAttribute('r',110)
   document.getElementById('discovery_arc').setAttribute('stroke-dasharray',`calc(${this.state.chartInput[0].percentage*11/12}*((22/7)*2.4)) calc((22/7)*240)`)
   document.getElementById(this.state.chartInput[0].title+this.state.chartInput[0].count).style.backgroundColor='#eee'
+  // document.getElementsByClassName("donutchart-innertext-label")[0].setAttribute("y","55%")
+  // document.getElementsByClassName("donutchart-innertext-label")[0].setAttribute("fill","#aaa")
+  // document.getElementsByClassName("donutchart-innertext-label")[0].setAttribute("font","30px")
+  // document.getElementsByClassName("donutchart-innertext-value")[0].setAttribute("y","45%")
 }
   render() {
     return (
@@ -83,9 +106,12 @@ componentDidMount(){
               <img src={icons.pdf} style={{margin:"0px 24px 0px 0px"}} alt='pdf' ></img>
             </div>
             <div className='project_br'></div>
-            <div id='project_overview_body' style={{'height':'400px','width':'400px'}}>
+            <div id='project_overview_body' >
               {Chart(this.state.chartInput)}
+              
             </div>
+            {/* <DonutChart className='donutchart' data={this.state.data} legend='true' colors={['#0C56EA','#A84EFB','#FF9F3C','#FFDD20','#00B8A0']} strokeColor="none" innerRadius={0.9} outerRadius={0.6} selectedOffset={-0.1} /> */}
+            
           </div>
 
       {/**Project Gallery */}

@@ -98,12 +98,9 @@ class Projects extends Component {
 
           {/* Risk button and menu Icon */}
           <div
-            className="flex-row"
+            className="flex-row project_header_end"
             style={{
-              marginLeft: "320px",
-              position: "absolute",
               flexDirection: "row-reverse",
-              width: "180px",
             }}
           >
             <img src={icon_menu} alt="menu" onClick={this.openMenu.bind(this)}></img>
@@ -218,7 +215,7 @@ class Projects extends Component {
           className="project_footer flex-row"
           style={{ height: "91px"}}
         >
-          <div id="imageThumbs" style={{ marginLeft: "24px", height: "24px" }}>
+          <div className="imageThumbs" style={{ marginLeft: "24px", height: "24px" }}>
             <img
               src={project_footer_thumbs[0]}
               alt={"thumb" + 0}
